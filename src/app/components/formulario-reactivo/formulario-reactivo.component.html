@@ -1,0 +1,43 @@
+<h1>'FORMULARIO-REACTIVO'</h1>
+
+<form [formGroup]="formularioUsuario" (ngSubmit)="agregarUsuario()" >
+
+    <div>
+        <label for="">Nombre:</label>
+        <input type="text" formControlName="nombre">
+        <p *ngIf="formularioUsuario.get('nombre')?.touched && formularioUsuario.get('nombre')?.errors?.['required']">Campo obligatorio</p>
+    </div>
+
+    <div>
+        <label for="">Correo:</label>
+        <input type="text" formControlName="correo">
+        <p *ngIf="formularioUsuario.get('correo')?.touched && formularioUsuario.get('correo')?.errors?.['required']">Campo obligatorio</p>
+        <p *ngIf="formularioUsuario.get('correo')?.touched && formularioUsuario.get('correo')?.errors?.['pattern']">Correo incorrecto</p>
+    </div>
+
+    <div>
+        <label for="">Contraseña:</label>
+        <input type="password" formControlName="contrasena">
+        <p *ngIf="formularioUsuario.get('contrasena')?.touched && formularioUsuario.get('contrasena')?.errors?.['required']">Campo obligatorio</p>
+        <p *ngIf="formularioUsuario.get('contrasena')?.touched && formularioUsuario.get('contrasena')?.errors?.['minLength']">Minimo 5 caracteres</p>
+        <p *ngIf="formularioUsuario.get('contrasena')?.touched && formularioUsuario.get('contrasena')?.errors?.['pattern']">Tiene que tener una letra Mayuscula</p>
+
+    </div>
+
+    <div>
+        <label for="">Confirmar Contraseña:</label>
+        <input type="password" formControlName="contrasena2">
+        <p *ngIf="formularioUsuario.get('contrasena2')?.touched && formularioUsuario.get('contrasena2')?.errors?.['required']">Campo obligatorio</p>
+        <p *ngIf="formularioUsuario.get('contrasena2')?.touched && formularioUsuario.get('contrasena2')?.errors?.['minLength']">Minimo 5 caracteres</p>
+        <p *ngIf="!contrasenasIguales">Las contraseñas tienen que coincidir</p>
+    </div>
+
+    <div>
+        <label for="">Admin:</label>
+        <input type="checkbox" formControlName="admin">
+    </div>
+
+
+    <button type="submit">Agregar usuario</button>
+
+</form>
